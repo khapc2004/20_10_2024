@@ -24,8 +24,7 @@
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Đổ bóng chữ */
         margin: 10px; /* Khoảng cách */
         z-index: -1;
-        top: 0%;
-        left: 50%;
+        text-align: center;
       }
 
       img {
@@ -58,6 +57,21 @@
         color: white; /* Màu chữ */
         top: 60%; /* Vị trí bắt đầu */
         left: 60%; /* Vị trí bắt đầu */
+      }
+
+      @media (max-width: 600px) {
+        .styled-text {
+          font-size: 2.5em; /* Giảm kích thước chữ cho màn hình nhỏ */
+        }
+
+        img {
+          max-width: 80%; /* Tăng chiều rộng tối đa cho hình ảnh */
+        }
+
+        .button {
+          padding: 10px 20px; /* Giảm kích thước nút */
+          font-size: 1em; /* Giảm kích thước chữ nút */
+        }
       }
     </style>
   </head>
