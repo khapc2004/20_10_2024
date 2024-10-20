@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LOVE</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        background-size: cover; /* Đảm bảo hình ảnh phủ đầy toàn bộ màn hình */
+        background-position: center;
+        animation: changeBackground 15s infinite; /* Thay đổi thời gian để điều chỉnh tốc độ */
+        display: flex; /* Sử dụng flexbox */
+        justify-content: center; /* Căn giữa theo chiều ngang */
+        align-items: center; /* Căn giữa theo chiều dọc */
+        height: 100vh; /* Chiều cao toàn bộ màn hình */
+      }
+
+      @keyframes changeBackground {
+        0% {
+          background-image: url("./picture/1.jpg");
+        }
+        33% {
+          background-image: url("./picture/2.jpg");
+        }
+        66% {
+          background-image: url("./picture/3.jpg");
+        }
+        100% {
+          background-image: url("./picture/1.jpg");
+        }
+      }
+
+      .petal {
+        position: absolute;
+        bottom: 100%;
+        width: 30px; /* Kích thước có thể điều chỉnh */
+        height: 30px; /* Kích thước có thể điều chỉnh */
+        background-size: cover;
+        animation: fall linear infinite;
+        opacity: 0.8;
+        z-index: 1; /* Đưa cánh hoa lên trên cùng */
+      }
+
+      @keyframes fall {
+        to {
+          transform: translateY(100vh) rotate(360deg);
+        }
+      }
+
+      .text {
+        font-size: 2.5em; /* Kích thước chữ lớn hơn */
+        text-align: center;
+        font-weight: bold;
+        background: linear-gradient(
+          90deg,
+          #ff4081,
+          #81d4fa
+        ); /* Gradient màu sắc cho chữ */
+        -webkit-background-clip: text; /* Clip gradient vào chữ */
+        -webkit-text-fill-color: transparent; /* Làm cho chữ trong suốt */
+        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+        opacity: 0; /* Bắt đầu với độ mờ 0 */
+        animation: fadeIn 1s forwards, typing 5s steps(40, end) forwards; /* Hiệu ứng mờ dần và viết chữ */
+      }
+
+      @keyframes fadeIn {
+        to {
+          opacity: 1; /* Kết thúc với độ mờ 1 */
+        }
+      }
+
+      @keyframes typing {
+        from {
+          width: 0; /* Bắt đầu với chiều rộng 0 */
+        }
+        to {
+          width: 100%; /* Kết thúc với chiều rộng 100% */
+        }
+      }
+
+      .typing {
+        display: inline-block;
+        white-space: nowrap; /* Không gói chữ */
+        overflow: hidden; /* Ẩn phần dư thừa */
+        border-right: 2px solid white; /* Đường gạch chân */
+        animation: typing s steps(40, end), blink 0.75s step-end infinite; /* Hiệu ứng viết chữ và nhấp nháy */
+      }
+
+      @keyframes blink {
+        50% {
+          border-color: transparent; /* Nhấp nháy */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="text">
+      <p class="typing">
+        20/10 anh nhỏ hỏng dẫn em bé đy chơi được, nên chúc em bé online nhó.
+        <br />
+        Chúc em bé lun tràn ngập nìm dui, ngày càng xink đẹp, may mắn <br />
+        đặc biệt là lun iu tui. <br />
+        Iu em nhìu:33333333
+      </p>
+    </div>
+
+    <script>
+      const petalsImages = [
+        "./picture/rose1.png",
+        "./picture/rose2.png",
+        "./picture/tym.png",
+      ];
+
+      function createPetal() {
+        const petal = document.createElement("div");
+        petal.className = "petal";
+
+        // Chọn ngẫu nhiên hình ảnh từ mảng
+        const randomImage =
+          petalsImages[Math.floor(Math.random() * petalsImages.length)];
+        petal.style.backgroundImage = `url(${randomImage})`;
+
+        petal.style.left = Math.random() * 100 + "vw";
+        petal.style.animationDuration = Math.random() * 3 + 2 + "s"; // 2s to 5s
+        document.body.appendChild(petal);
+
+        // Xóa cánh hoa sau khi nó rơi xong
+        petal.addEventListener("animationend", () => {
+          petal.remove();
+        });
+      }
+
+      setInterval(createPetal, 100); // Tạo cánh hoa mỗi 100ms
+    </script>
+  </body>
+</html>

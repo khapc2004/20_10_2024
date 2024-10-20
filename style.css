@@ -1,0 +1,35 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  background-color: #f8f9fa;
+  font-family: Arial, sans-serif;
+}
+
+.message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2em;
+  color: #e63946;
+  text-align: center;
+  z-index: 10;
+}
+
+.rose {
+  position: absolute;
+  width: 30px; /* Kích thước mặc định */
+  pointer-events: none;
+  animation: fall linear forwards; /* Thêm animation */
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-100px); /* Bắt đầu từ trên */
+    opacity: 1; /* Bắt đầu với độ mờ đầy đủ */
+  }
+  100% {
+    transform: translateY(100vh); /* Rơi xuống đáy */
+    opacity: 0; /* Từ từ biến mất */
+  }
+}

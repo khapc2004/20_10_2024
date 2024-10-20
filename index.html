@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hù</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column; /* Sắp xếp theo chiều dọc */
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Chiều cao toàn bộ màn hình */
+        background-color: #f0f0f0; /* Màu nền */
+        position: relative; /* Để định vị nút */
+        overflow: hidden; /* Ẩn cuộn */
+        font-family: Arial, sans-serif; /* Kiểu chữ */
+      }
+
+      .styled-text {
+        font-size: 4em; /* Kích thước chữ lớn */
+        color: #ff4081; /* Màu chữ */
+        font-weight: bold; /* Chữ in đậm */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Đổ bóng chữ */
+        margin: 10px; /* Khoảng cách */
+        z-index: -1;
+        top: 0%;
+        left: 50%;
+      }
+
+      img {
+        max-width: 20%; /* Giới hạn chiều rộng tối đa */
+        height: auto; /* Giữ tỷ lệ khung hình */
+        margin: 20px 0; /* Khoảng cách trên và dưới */
+        border-radius: 10px; /* Bo góc cho hình ảnh */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Đổ bóng cho hình ảnh */
+      }
+
+      .button {
+        padding: 15px 30px; /* Kích thước nút */
+        font-size: 1.2em; /* Kích thước chữ */
+        margin: 10px; /* Khoảng cách giữa các nút */
+        border: none; /* Không viền */
+        border-radius: 5px; /* Bo góc */
+        cursor: pointer; /* Con trỏ khi rê chuột */
+        position: absolute; /* Để có thể di chuyển */
+      }
+
+      .btn1 {
+        background-color: #4caf50; /* Màu xanh */
+        color: white; /* Màu chữ */
+        top: 60%; /* Vị trí bắt đầu */
+        left: 33%; /* Vị trí bắt đầu */
+      }
+
+      .btn2 {
+        background-color: #f44336; /* Màu đỏ */
+        color: white; /* Màu chữ */
+        top: 60%; /* Vị trí bắt đầu */
+        left: 60%; /* Vị trí bắt đầu */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="styled-text">Đẹp hem?</div>
+    <img src="./picture/hu.jpg" alt="hu" />
+    <button class="button btn1" onclick="window.location.href='home.html';">
+      Quá đẹp
+    </button>
+    <button class="button btn2" onmouseover="moveButton(this)">Hông</button>
+
+    <script>
+      function moveButton(button) {
+        const btn1 = document.querySelector(".btn1");
+        const btn1Rect = btn1.getBoundingClientRect();
+        let newX, newY;
+        const buttonWidth = button.clientWidth;
+        const buttonHeight = button.clientHeight;
+
+        do {
+          newX = Math.random() * (window.innerWidth - buttonWidth);
+          newY = Math.random() * (window.innerHeight - buttonHeight);
+        } while (
+          newX < btn1Rect.right &&
+          newX + buttonWidth > btn1Rect.left &&
+          newY < btn1Rect.bottom &&
+          newY + buttonHeight > btn1Rect.top
+        );
+
+        button.style.left = `${newX}px`;
+        button.style.top = `${newY}px`;
+      }
+    </script>
+  </body>
+</html>
